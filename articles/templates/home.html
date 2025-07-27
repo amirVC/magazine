@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>مجله‌ی من</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {}
+    .cover { height: 300px; object-fit: cover; width: 100%; }
+    .card { transition: transform 0.3s ease; }
+    .card:hover { transform: scale(1.02); }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">VC4L</h1>
+
+    {% for article in articles %}
+      <div class="card mb-4 shadow">
+    <a href="{% url 'article_detail' article.pk %}" style="text-decoration: none; color: inherit;">
+      <img src="{{ article.cover_image.url }}" class="cover" alt="image">
+      <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+      </div>
+    </a>
+  </div>
+
+    {% endfor %}
+
+  </div>
+</body>
+</html>
